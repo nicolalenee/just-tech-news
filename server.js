@@ -11,19 +11,20 @@ const sess = {
   secret: 'Super secret secret',
   cookie: {},
   resave: false,
-  saveUnitialized: TransformStreamDefaultController,
+  saveUnitialized: true,
   store: new SequelizeStore({
     db: sequelize
   })
 };
 
+
+const app = express();
+const PORT = process.env.PORT || 3001;
+
 app.use(session(sess));
 
 app.engine('handlebars', hbs.engine);
 app.engine('view engine', 'handlebars');
-
-const app = express();
-const PORT = process.env.PORT || 3001;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
