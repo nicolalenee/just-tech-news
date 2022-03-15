@@ -65,13 +65,19 @@ router.post('/', (req, res) => {
     email: req.body.email,
     password: req.body.password
   })
-    .then(dbUserData => res.json(dbUserData))
-    .catch(err => {
-      console.log(err);
-      res.status(500).json(err);
+  .then(dbUserData => {
+    req.session.save(() => {
+      req.session.user_id = dbUserData.id;
+      req.session.username = dbUserData.username;
+      req.session.loggedIn = true;
+  
+      res.json(dbUserData);
     });
+  })
 });
 
+
+// allow users to login or create an account
 router.post('/login', (req, res) => {
   // expectss {email: 'lerantino@gmail.com', password: 'passowrd1234'}
   User.findOne({
@@ -88,11 +94,16 @@ router.post('/login', (req, res) => {
       res.status(400).json({ messsage: 'Incorrect password!'});
       return;
     }
-    res.json({ user: dbUserData, message: 'You are now logged in!'});
+    req.session.save(() => {
+      req.session.user_id = dbUserData.id;
+      req.session.username = dbUserData.username;
+      req.session.loggedIn = true;
+
+      res.json({ user: dbUserData, message: 'You are now logged in!'})
+    });
 
   });
 });
-
 
 // PUT /api/users/1
 router.put('/:id', (req, res) => {
@@ -138,6 +149,7 @@ router.delete('/:id', (req, res) => {
     });
 });
 
+// allow users to logout
 router.post('/logout', (req, res) => {
   if (req.session.loggedIn) {
     req.session.destroy(() => {
