@@ -27,7 +27,7 @@ class Post extends Model {
   }
 }
 
-Model.init(
+Post.init(
   {
     id: {
       type: DataTypes.INTEGER,
