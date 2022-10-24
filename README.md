@@ -23,6 +23,6 @@ This app requires Node.js and MySQL to be run.
 Jest was used for unit testing of date and url formatting. 
 
 ## Questions
-[Repo](https://github.com/nicolalenee/just-tech-news)   
+[Repository](https://github.com/nicolalenee/just-tech-news)   
 App was deployed using Heroku [Deployment](https://nicola-just-tech-news.herokuapp.com/)
 
