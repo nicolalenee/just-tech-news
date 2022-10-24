@@ -12,7 +12,7 @@ Comment.init(
       autoIncrement: true
     },
     comment_text: {
-      type: DataTypes.TEXT,
+      type: DataTypes.STRING,
       allowNull: false,
       validate: {
         // this means that the comment must be at least 1 character long

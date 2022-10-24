@@ -90,11 +90,14 @@ router.post('/login', (req, res) => {
       res.status(400).json({ message: 'No user with that email address!'});
       return;
     }
+
     const validPasssword = dbUserData.checkPassword(req.body.password);
+    
     if (!validPasssword) {
-      res.status(400).json({ messsage: 'Incorrect password!'});
+      res.status(400).json({ messsage: 'Incorrect password!' });
       return;
     }
+
     req.session.save(() => {
       req.session.user_id = dbUserData.id;
       req.session.username = dbUserData.username;
@@ -104,6 +107,18 @@ router.post('/login', (req, res) => {
     });
 
   });
+});
+
+// allow users to logout
+router.post('/logout', (req, res) => {
+  if (req.session.loggedIn) {
+    req.session.destroy(() => {
+      res.status(204).end();
+    });
+  }
+  else {
+    res.status(404).end();
+  }
 });
 
 // PUT /api/users/1
@@ -150,16 +165,6 @@ router.delete('/:id', (req, res) => {
     });
 });
 
-// allow users to logout
-router.post('/logout', (req, res) => {
-  if (req.session.loggedIn) {
-    req.session.destroy(() => {
-      res.status(204).end();
-    });
-  }
-  else {
-    res.status(404).end();
-  }
-});
+
 
 module.exports = router;

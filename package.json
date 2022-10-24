@@ -26,7 +26,7 @@
     "express-handlebars": "^6.0.2",
     "express-session": "^1.17.2",
     "mysql2": "^2.3.3",
-    "sequelize": "^6.16.2"
+    "sequelize": "^6.25.3"
   },
   "devDependencies": {
     "jest": "^27.5.1"

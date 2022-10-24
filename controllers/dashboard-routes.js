@@ -2,9 +2,10 @@ const router = require('express').Router();
 const sequelize = require('../config/connection');
 const withAuth = require('../utils/auth');
 const { Post, User, Comment } = require('../models');
-const { reset } = require('nodemon');
 
 router.get('/', withAuth, (req, res) => {
+  console.log(req.session);
+  console.log('=====================')
   Post.findAll({
     where: {
       user_id: req.session.user_id
