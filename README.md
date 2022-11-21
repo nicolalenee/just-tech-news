@@ -1,7 +1,6 @@
 # just-tech-news
-<div style="text-align:center;">
   [Python](https://github.com/nicolalenee/python-newsfeed) | [Java](https://github.com/nicolalenee/tech-news-java-api)
-</div>
+
 ## Description
 A web application that allows users to create posts about technology related topics. Users can signup and log in and out of the app to create posts, comment, and upvote posts. Once signed in users have access to their own personal dashboard where they can create news posts and view or edit the posts that they have made. This app is simple and easy-to-use while appealing to the nostalgic feeling of online discussion boards.
 
